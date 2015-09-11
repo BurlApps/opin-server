@@ -1,0 +1,22 @@
+<% include ../includes/start.ejs %>
+<div class="container">
+  <a href="/" class="logo"><%= siteName %></a>
+  <div class="modal">
+    <div class="message">Reset Your Password</div>
+    <div class="submessage">
+      Enter your email address below and we'll<br>
+      send you a link to reset your password.
+    </div>
+    <form action="/reset">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <input type="email" class="input" name="email" placeholder="Email" step="1" autofocus required>
+      <input type="submit" class="button" value="Reset Password">
+    </form>
+  </div>
+  <div class="bottom-text">
+    Remember your password?
+    <a href="/login">Sign In</a>
+  </div>
+</div>
+<% include ../includes/footer.ejs %>
+<% include ../includes/end.ejs %>

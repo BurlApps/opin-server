@@ -1,0 +1,17 @@
+<!-- CSS -->
+<!-- https://www.google.com/fonts#UsePlace:use/Collection:Titillium+Web:400,600,700|Courgette|Roboto:900 -->
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700|Courgette|Roboto:900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/index.css?r=<%= random %>">
+
+<% if(template == "home/index") { %>
+	<link rel="stylesheet" href="/css/home.css?r=<%= random %>">
+<% } else if(template == "home/notfound") { %>
+	<link rel="stylesheet" href="/css/notfound.css?r=<%= random %>">
+<% } else if(template.split("/")[0] == "auth") { %>
+  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>">
+<% } else if(template == "dashboard/index") { %>
+  <link rel="stylesheet" href="/css/dashboard.css?r=<%= random %>">
+<% } else if(template == "dashboard/new") { %>
+  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>">
+<% } %>

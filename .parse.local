@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "release": {
+      "applicationId": "kZkm35gPYdZKT7dAAie6MYUhSQGiJLrzvdjuHjCi"
+    },
+    "_default": {
+      "link": "release"
+    }
+  }
+}

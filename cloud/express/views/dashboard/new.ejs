@@ -1,0 +1,18 @@
+<% include ../includes/start.ejs %>
+<div class="container">
+  <a href="/" class="logo"><%= siteName %></a>
+  <div class="modal">
+    <div class="message">Create Class</div>
+    <div class="submessage">
+      Give the classroom a name your<br>
+      students easily can remember.
+    </div>
+    <form action="/classes/new">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <input type="text" class="input" name="name" placeholder="Name" step="1" autofocus required>
+      <input type="submit" class="button" value="Create Class!">
+    </form>
+  </div>
+</div>
+<% include ../includes/footer.ejs %>
+<% include ../includes/end.ejs %>
