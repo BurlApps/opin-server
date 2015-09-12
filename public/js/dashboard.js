@@ -108,7 +108,7 @@ $(function() {
 			  button.val("CREATED")
 			  
 			  swal({
-		      title: "The Survey Has Been Created!",
+		      title: "Your Survey Has<br>Been Created!",
 		      html: true,
 		      type: "success",
 		      confirmButtonColor: "#38A0DC",
