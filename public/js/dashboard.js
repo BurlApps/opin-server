@@ -38,9 +38,10 @@ $(function() {
   $(".builder-table").on("keypress keyup", "tr .input.tag", function() {
 		var tr = $(this).parents("tr")
 		var length = $(this).val().length
+		var max = $(this).attr("maxlength")
 			
 		tr.find(".counter")
-			.text("length: " + length + "/25")
+			.text("length: " + length + "/" + max)
 			.toggle(length > 0)
 	})
   
