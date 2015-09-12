@@ -1,1 +1,2 @@
-require("cloud/beforeSave/user")
+require("cloud/beforeSave/question")
+require("cloud/beforeSave/survey")

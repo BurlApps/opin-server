@@ -5,19 +5,10 @@ var Installation = Parse.Installation
 
 module.exports.hasSurvey = function(req, res, next) {
 	var survey = new Survey()
-	var relation = req.installation.relation("surveys")
 		
 	survey.id = req.param("survey")
 	
-	survey.fetch().then(function() {
-		var query = relation.query()
-		
-		query.equalTo("objectId", survey.id)
-		return query.count()
-	}).then(function(count) {
-		if(count === 0)
-			return res.redirect("callback://done")
-		
+	survey.fetch().then(function() {		
   	req.survey = survey
   	res.locals.survey = survey
     next()
@@ -52,9 +43,6 @@ module.exports.newPOST = function(req, res) {
 	
 	survey.set("name", req.param("name"))
 	survey.set("class", req.classroom)
-	survey.set("sent", 0)
-	survey.set("taken", 0)
-	survey.set("state", 0)
 	
 	survey.save().then(function() {
 		var relation = survey.relation("questions")
@@ -66,8 +54,6 @@ module.exports.newPOST = function(req, res) {
 	      
 	      question.set("tag", data.tag)
 	      question.set("question", data.question)
-	      question.set("good", 0)
-	      question.set("bad", 0)
 	      
 	      return question.save().then(function() {
 		    	return relation.add(question)
@@ -116,7 +102,10 @@ module.exports.send = function(req, res) {
 	})
 }
 
-module.exports.student = function(req, res) {	
+module.exports.student = function(req, res) {
+	if(req.survey.get("state") == 2)
+		return res.redirect("callback://done")
+	
 	req.survey.get("class").fetch().then(function(classroom) {
 		res.locals.classroom = classroom
 	}).then(function() {
@@ -129,7 +118,12 @@ module.exports.student = function(req, res) {
 	})
 } 
 
-module.exports.studentPOST = function(req, res) {	
+module.exports.studentPOST = function(req, res) {
+	if(req.survey.get("state") == 2)
+		return res.successT({
+			next: "callback://done"
+		})
+	
 	var relation = req.installation.relation("surveys")
 	var answers = req.param("answers")
 	var promise = Parse.Promise.as()
@@ -155,10 +149,6 @@ module.exports.studentPOST = function(req, res) {
   
   promise.then(function() {
 	  req.survey.increment("taken")
-	  
-	  if(req.survey.get("taken") >= req.survey.get("sent"))
-	  	req.survey.set("state", 2)
-	  
 	  req.survey.save()
   }).then(function() {
 	  relation.remove(req.survey)
