@@ -6,7 +6,7 @@ module.exports.restricted = function(req, res, next) {
   	var user = new User()
 
   	user.id = req.session.user
-  	user.fetch().then(function(user) {
+  	user.fetch().then(function() {
     	req.user = user
     	res.locals.user = user
       next()

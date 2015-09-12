@@ -1,11 +1,11 @@
-<% include ../includes/start.ejs %>
+<% include ../../includes/start.ejs %>
 <div class="container">
   <a href="/" class="logo"><%= siteName %></a>
   <div class="modal">
-    <div class="message">Create Class</div>
+    <div class="message">Create Classroom</div>
     <div class="submessage">
       Give the classroom a name your<br>
-      students easily can remember.
+      students can easily remember.
     </div>
     <form action="/classes/new">
       <input type="hidden" name="_csrf" value="<%= csrf %>">
@@ -14,5 +14,5 @@
     </form>
   </div>
 </div>
-<% include ../includes/footer.ejs %>
-<% include ../includes/end.ejs %>
+<% include ../../includes/footer.ejs %>
+<% include ../../includes/end.ejs %>

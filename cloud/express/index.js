@@ -10,7 +10,8 @@ Parse.Cloud.useMasterKey()
 var routes = {
   core: require("cloud/express/routes/index"),
   auth: require("cloud/express/routes/auth"),
-  dashboard: require("cloud/express/routes/dashboard")
+  classes: require("cloud/express/routes/classes"),
+  surveys: require("cloud/express/routes/surveys")
 }
 
 // Global app configuration section
@@ -64,8 +65,9 @@ app.use(function(req, res, next) {
   res.locals.csrf = req.session._csrf
 
   // Locals
-  res.locals.host = req.session.host || ("http://" + req.host)
+  res.locals.host = (req.protocol + "://" + req.session.host) || ("http://" + req.host)
   res.locals.url = res.locals.host + req.url
+  res.locals.path = req.url
   res.locals.user = null
   res.locals.mixpanelToken = req.session.mixpanelToken
   res.locals.random = random
@@ -87,7 +89,7 @@ app.use(function(req, res, next) {
 })
 
 // Landing
-app.get('/', routes.auth.loggedIn, routes.auth.login)
+app.get('/', routes.auth.loggedIn, routes.auth.register)
 
 // Auth
 app.get('/login', routes.auth.loggedIn, routes.auth.login)
@@ -105,10 +107,19 @@ app.post('/register', routes.auth.registerPOST)
 app.post('/reset', routes.auth.resetPOST)
 
 // Dashboard
-app.get('/classes', routes.auth.restricted, routes.dashboard.hasClasses, routes.dashboard.home)
-app.get('/classes/new', routes.auth.restricted, routes.dashboard.new)
+app.get('/classes', routes.auth.restricted, routes.classes.hasClasses, routes.classes.findClass)
+app.get('/classes/new', routes.auth.restricted, routes.classes.new)
+app.get('/classes/:class', routes.auth.restricted, routes.classes.hasClass, routes.classes.home)
+app.get('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, routes.surveys.new)
+app.get('/classes/:class/:survey/send', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.send)
 
-app.post('/classes/new', routes.auth.restricted, routes.dashboard.newPOST)
+app.post('/classes/new', routes.auth.restricted, routes.classes.newPOST)
+app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, routes.surveys.newPOST)
+
+// WebView Survey
+app.get('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.student)
+
+app.post('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.studentPOST)
 
 // Terms & Privacy
 app.get('/terms', routes.core.terms)

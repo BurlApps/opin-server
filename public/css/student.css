@@ -1,0 +1,157 @@
+body {
+	background: #01233F;
+}
+
+.background {
+	display: none;
+}
+
+.container {
+	padding: 20px;
+	margin: 0 auto;
+	max-width: 400px;
+}
+
+.container .header {
+  text-align: center;
+  font-family: 'Courgette', cursive;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.container .subheader {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.container .form {
+	margin: 30px 0 0 0;
+}
+
+.container .form .item {
+	margin-bottom: 20px;
+}
+
+.container .form .question {
+	color: #fff;
+	font-size: 18px;
+	float: left;
+	
+	width: -moz-calc(100% - 100px);
+  width: -webkit-calc(100% - 100px);
+  width: -o-calc(100% - 100px);
+  width: calc(100% - 100px);
+}
+
+.container .form .selectors {
+	width: 90px;
+	float: right;
+}
+
+.container .form .selectors .selector {
+	padding: 8px;
+	background: rgba(255, 255, 255, 0.4);
+	color: #fff;
+	font-size: 18px;
+	opacity: 0.5;
+	cursor: pointer;
+	
+	-webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.container .form .selectors .selector.selected {
+	opacity: 1;
+}
+
+.container .form .selectors .selector.down {
+	margin-right: 5px;
+	background: #C5635D;
+}
+
+.container .form .selectors .selector.up {
+	background: #4FC438;
+}
+
+.container .form .button {
+  margin-top: 30px;
+  text-transform: uppercase;
+  border: 1px solid #4d93d7;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+  font-family: 'Titillium Web', sans-serif;
+  padding: 12px 0;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  outline: none;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+
+  -webkit-box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px -1px rgba(0,0,0,0.2);
+  -moz-box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px -1px rgba(0,0,0,0.2);
+  -ms-box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px -1px rgba(0,0,0,0.2);
+  -o-box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px -1px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 1px #78bff5,0 2px 2px -1px rgba(0,0,0,0.2);
+
+  background-color: #61adf0;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container .form .button span {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.container .form .button:disabled {
+	opacity: 0.5;
+}
+
+.container .form .button.error {
+  border: 1px solid #d74e4e;
+  background-color: #f06161;
+
+  -webkit-box-shadow: inset 0 1px 1px #f57878,0 2px 2px -1px rgba(0,0,0,0.2);
+  -moz-box-shadow: inset 0 1px 1px #f57878,0 2px 2px -1px rgba(0,0,0,0.2);
+  -ms-box-shadow: inset 0 1px 1px #f57878,0 2px 2px -1px rgba(0,0,0,0.2);
+  -o-box-shadow: inset 0 1px 1px #f57878,0 2px 2px -1px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 1px #f57878,0 2px 2px -1px rgba(0,0,0,0.2);
+}
+
+.container .form .button.error:hover {
+  background-color: #f35e5e;
+}
+
+.container .form .button.error:hover:active {
+  box-shadow: inset 0 1px 1px #f04848;
+}
+
+.container .form .button:hover {
+  background: #5fabf1;
+}
+
+.container .form .button:hover:active {
+  box-shadow: inset 0 1px 1px #48a6f0;
+}

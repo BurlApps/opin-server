@@ -1,6 +1,6 @@
 <!-- Javascript -->
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="/js/index.js?r=<%= random %>"></script>
+<script type="text/javascript" src="/js/global.js?r=<%= random %>"></script>
 
 <!-- start Mixpanel -->
 <script type="text/javascript">
@@ -40,8 +40,12 @@ mixpanel.track('Web: <%= template %>', {
 	<script type="text/javascript" src="/js/home.js?r=<%= random %>"></script>
 <% } else if(template.split("/")[0] == "auth") { %>
 	<script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
-<% } else if(template == "dashboard/index") { %>
+<% } else if(template == "dashboard/classes/index") { %>
 	<script type="text/javascript" src="/js/dashboard.js?r=<%= random %>"></script>
-<% } else if(template == "dashboard/new") { %>
+<% } else if(template == "dashboard/surveys/new") { %>
+	<script type="text/javascript" src="/js/dashboard.js?r=<%= random %>"></script>
+<% } else if(template == "dashboard/classes/new") { %>
   <script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
+<% } else if(template == "student/index") { %>
+  <script type="text/javascript" src="/js/student.js?r=<%= random %>"></script>
 <% } %>

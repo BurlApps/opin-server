@@ -1,0 +1,65 @@
+<div class="content">
+  <% if(surveys.length > 0) { %>
+	  <div class="header">	  
+	    <div class="subinfo">
+		    You Have <strong><%= students %> Students</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+		    Classroom Code: <strong><%= 
+			    classroom.id.slice(0,4).toUpperCase() + " - " + classroom.id.slice(4,8).toUpperCase() 
+			  %></strong>
+		  </div>
+	    <a href="/classes/<%= classroom.id %>/new" class="new-button">NEW SURVEY</a>
+	    <div class="search-box">
+	      <div class="icon fa fa-search"></div>
+	      <input class="search input" type="text" placeholder="Search for a surveys by name..."/>
+	    </div>
+	    <div class="clear"></div>
+	  </div>
+	  <table class="table data-table">
+	    <thead>
+	      <tr>
+	        <td></td>
+	        <td>Name</td>
+	        <td>State</td>
+	        <td>Created</td>
+	      </tr>
+	    </thead>
+	    <tbody>
+		    <% surveys.forEach(function(survey) { %>		    
+			    <tr data-href="/classes/<%= classroom.id %>/<%= survey.id %>">
+		        <td><div class="fa fa-bar-chart-o"></div></td>
+		        <td><%= survey.get("name") %></td>
+		        <% if(survey.get("state") == 0) { %>
+			        <td>
+				        CREATED&nbsp;&nbsp;&nbsp;
+				        <span class="fa fa-arrow-right"></span>
+				        &nbsp;&nbsp;&nbsp;
+				      	<a class="send" href="/classes/<%= classroom.id %>/<%= survey.id %>/send">Send To Students</a>  
+				      </td>
+		        <% } else if(survey.get("state") == 1) { %>
+		        	<td class="blue">IN PROGRESS (<%= survey.get("taken") + "/" + survey.get("sent") %>)</td>
+		        <% } else { %>
+			        <td	class="green">FINISHED</td>
+			      <% } %>
+		        <td><%= survey.duration %></td>
+		      </tr>
+			  <% }) %>
+	    </tbody>
+	  </table>
+	<% } else { %>
+		<div class="new-survey-message">
+      <div class="message">
+        Your Classroom Code: <span><%=
+        	classroom.id.slice(0,4).toUpperCase() + " - " + classroom.id.slice(4,8).toUpperCase()
+        %></span>
+      </div>
+      <div class="submessage">
+	      Your students can join the class by entering the code on the<br>
+	      app. Once they have joined, <strong>create your first survey</strong>. Don't<br>
+	      worry you can choose to send it when you are ready! 
+      </div>
+      <a class="new-button" href="/classes/<%= classroom.id %>/new">
+        Create Survey
+      </a>
+    </div>
+	<% } %>
+</div>
