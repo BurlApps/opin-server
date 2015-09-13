@@ -1,1 +1,1 @@
-
+require("cloud/afterSave/class")

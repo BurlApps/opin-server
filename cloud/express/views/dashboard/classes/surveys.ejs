@@ -4,7 +4,7 @@
 	    <div class="subinfo">
 		    You Have <strong><%= students %> Student<%= students != 1 ? "s" : "" %></strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
 		    Classroom Code: <strong><%= 
-			    classroom.id.slice(0,4).toUpperCase() + " - " + classroom.id.slice(4,8).toUpperCase() 
+			    classroom.id.slice(0,5).toUpperCase() + " - " + classroom.id.slice(5,10).toUpperCase() 
 			  %></strong>
 		  </div>
 	    <a href="/classes/<%= classroom.id %>/new" class="new-button">NEW SURVEY</a>
@@ -49,7 +49,7 @@
 		<div class="new-survey-message">
       <div class="message">
         Your Classroom Code: <span><%=
-        	classroom.id.slice(0,4).toUpperCase() + " - " + classroom.id.slice(4,8).toUpperCase()
+        	classroom.id.slice(0,5).toUpperCase() + " - " + classroom.id.slice(5,10).toUpperCase() 
         %></span>
       </div>
       <div class="submessage">

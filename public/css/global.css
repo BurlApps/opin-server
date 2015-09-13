@@ -46,7 +46,7 @@ body * {
     background-image: linear-gradient(top,rgba(17,2,49,.75),rgba(17,2,49,0)),linear-gradient(bottom left,#eb6670,#f67f7c,#f9ac97,#f1b79f,#e1bea7,#c3bcb0,#8aabb2,#4e95b2,#2588b6);
 }
 
-.container {
+body > .container {
   position: relative;
   z-index: 1;
   padding: 0 20px;

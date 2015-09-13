@@ -86,7 +86,7 @@ module.exports.send = function(req, res) {
 		return Parse.Push.send({
 		  where: students.query(),
 		  data: {
-		    action: "survey.new",
+		    actions: "survey.new",
 		    survey: req.survey.id,
 		    alert: req.classroom.get("name") + " posted a new survey!",
 		    badge: "Increment"
@@ -152,7 +152,7 @@ module.exports.studentPOST = function(req, res) {
 	  req.survey.save()
   }).then(function() {
 	  relation.remove(req.survey)
-	  req.installation.save()
+	  return req.installation.save()
   }).then(function() {
 	  res.successT({
 			next: "callback://done"

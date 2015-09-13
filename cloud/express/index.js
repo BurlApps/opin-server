@@ -65,7 +65,7 @@ app.use(function(req, res, next) {
   res.locals.csrf = req.session._csrf
 
   // Locals
-  res.locals.host = (req.protocol + "://" + req.session.host) || ("http://" + req.host)
+  res.locals.host = req.session.host || ("http://" + req.host)
   res.locals.url = res.locals.host + req.url
   res.locals.path = req.url
   res.locals.user = null

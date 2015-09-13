@@ -6,7 +6,9 @@
 	    <div class="arrow fa fa-chevron-down"></div>
 	    <div class="clear"></div>
 	    <div class="dropdown">
-	      <a href="/logout">Sign Out</a>
+		    <div class="container">
+	      	<a href="/logout">Sign Out</a>
+		    </div>
 	    </div>
 	  </div>
 	  <div class="profile">
@@ -14,15 +16,13 @@
 	    <div class="arrow fa fa-chevron-down"></div>
 	    <div class="clear"></div>
 	    <div class="dropdown">
-		    <% if(classes.length > 1) { %>
-		      <% classes.forEach(function(temp) { %>
-		      	<% if(temp.id != classroom.id) { %>
-			      	<a href="/classes/<%= temp.id %>"><%= temp.get("name") %></a>
-			      <% } %>
-			    <% }) %>
-			  <% } else { %>
-			  	<a href="/classes/new">Create Classroom</a>
-			  <% } %>
+		    <div class="container">
+			    <% if(classes.length > 1) { %>
+			      <% classes.forEach(function(temp) { %>
+				      <a href="/classes/<%= temp.id %>"><%= temp.get("name") %></a>
+				    <% }) %>
+				  <% } %>
+		    </div>
 	    </div>
 	  </div>
 	  <div class="navigation">

@@ -19,6 +19,7 @@ body {
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
   font-size: 36px;
   font-weight: 900;
+  margin: 50px 0 0 0;
 }
 
 .container .subheader {
@@ -30,7 +31,7 @@ body {
 }
 
 .container .form {
-	margin: 30px 0 0 0;
+	margin: 50px 0 0 0;
 }
 
 .container .form .item {
