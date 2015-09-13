@@ -2,6 +2,7 @@ $(function() {
   // Dashboard Profile Toggle
   $(".profile").click(function(e) {
 	  e.stopPropagation()
+	  $(this).siblings().find(".dropdown").hide()
     $(this).find(".dropdown").toggle()
   })
   

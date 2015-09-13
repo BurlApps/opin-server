@@ -2,7 +2,7 @@
   <% if(surveys.length > 0) { %>
 	  <div class="header">	  
 	    <div class="subinfo">
-		    You Have <strong><%= students %> Students</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+		    You Have <strong><%= students %> Student<%= students != 1 ? "s" : "" %></strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
 		    Classroom Code: <strong><%= 
 			    classroom.id.slice(0,4).toUpperCase() + " - " + classroom.id.slice(4,8).toUpperCase() 
 			  %></strong>
