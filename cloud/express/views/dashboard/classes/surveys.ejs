@@ -3,9 +3,7 @@
 	  <div class="header">	  
 	    <div class="subinfo">
 		    You Have <strong><%= students %> Student<%= students != 1 ? "s" : "" %></strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-		    Classroom Code: <strong><%= 
-			    classroom.id.slice(0,5).toUpperCase() + " - " + classroom.id.slice(5,10).toUpperCase() 
-			  %></strong>
+		    Classroom Code: <strong><%= classroom.get("code").toUpperCase() %></strong>
 		  </div>
 	    <a href="/classes/<%= classroom.id %>/new" class="new-button">NEW SURVEY</a>
 	    <div class="search-box">
@@ -48,9 +46,7 @@
 	<% } else { %>
 		<div class="screen-message">
       <div class="message">
-        Your Classroom Code: <span><%=
-        	classroom.id.slice(0,5).toUpperCase() + " - " + classroom.id.slice(5,10).toUpperCase() 
-        %></span>
+        Your Classroom Code: <span><%= classroom.get("code").toUpperCase() %></span>
       </div>
       <div class="submessage">
 	      Students can join the class by entering the classroom code into<br>
