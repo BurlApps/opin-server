@@ -109,6 +109,8 @@ module.exports.view = function(req, res) {
 	
 	var query = req.survey.relation("questions").query()
 	
+	query.descending("good")
+	
 	query.find().then(function(questions) {
 		res.renderT("dashboard/surveys/index", {
 			mode: "view",
