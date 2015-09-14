@@ -72,6 +72,9 @@ module.exports.newPOST = function(req, res) {
 }
 
 module.exports.send = function(req, res) {
+	if(req.survey.get("state") > 0)
+		return res.redirect("/classes/" + req.classroom.id + "/" + req.survey.id)
+	
 	var students = req.classroom.relation("students")
 	var count = 0
 
@@ -122,7 +125,6 @@ module.exports.view = function(req, res) {
 module.exports.edit = function(req, res) {
   if(req.survey.get("state") > 0)
 		return res.redirect("/classes/" + req.classroom.id + "/" + req.survey.id)
-	
 	
 	var query = req.survey.relation("questions").query()
 	
