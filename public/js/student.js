@@ -1,11 +1,12 @@
 $(function() {
-	$(".selector").click(function() {
-		var parent = $(this).parent()
+	$(".selector").on("click tap", function(e) {		
+		var button = $(this)
+		var parent = button.parent()
 		var selectors = parent.find(".selector")
 		
 		selectors.removeClass("selected")
 		parent.find(".score").val($(this).data("score"))
-		$(this).addClass("selected")
+		button.addClass("selected")
 		
 		if($(".selector.selected").length == $(".item").length)
 			$(".form .button").removeAttr("disabled")

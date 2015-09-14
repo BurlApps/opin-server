@@ -2,8 +2,20 @@ html, body {
 	background: #FAFFFF;
 }
 
+* {	
+	-webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  outline: none;
+}
+
 body {
-	padding: 30px 0;
+	padding: 30px;
+	
+	-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .background {

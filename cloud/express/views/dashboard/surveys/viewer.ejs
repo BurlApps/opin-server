@@ -34,7 +34,7 @@
 			  	<% if(max > 0) { %>
 				  	<div class="set">	    
 							<div class="slider" style='margin-left: <%= good/2 %>%;'>
-								<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
+								<div class="tag"><%= index + 1 %>) <%= question.get("tag") %></div>
 							  <div class="item bad" style='width: <%= bad %>%;'></div>
 								<div class="item good" style='width: <%= good %>%; left: <%= bad %>%'></div>
 								<div class="clear"></div>
@@ -62,18 +62,22 @@
 	      <td></td>
         <td>Tag (represented in graphs)</td>
         <td>Question (shown to student)</td>
-        <td>Positive Answers</td>
-        <td>Negative Answers</td>
+        <td>Positive</td>
+        <td>Negative</td>
       </tr>
     </thead>
     <tbody>
-	  	<% questions.forEach(function(question, index) { %>		    
+	  	<% questions.forEach(function(question, index) { 
+		  	var max = question.get("bad") + question.get("good")
+				var bad = Math.floor(((question.get("bad")/max) * 100) || 0)
+				var good = Math.ceil(100 - bad)
+	  	%>		    
 				<tr data-question="<%= question.id %>">
 					<td><%= index + 1 %>)</td>
 					<td><%= question.get("tag") %></td>
 					<td><%= question.get("question") %></td>
-					<td class="green"><%= question.get("good") %></td>
-					<td class="red"><%= question.get("bad") %></td>
+					<td class="green"><%= good %>%</td>
+					<td class="red"><%= bad %>%</td>
 				</tr>
 		  <% }) %>
     </tbody>
