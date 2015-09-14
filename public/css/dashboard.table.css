@@ -262,10 +262,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  
-  -webkit-box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px 3px rgba(0,0,0,0.2);
-  -moz-box-shadown: inset 0 1px 1px #77bdf4,0 2px 2px 3px rgba(0,0,0,0.2);
-  box-shadow: inset 0 1px 1px #77bdf4,0 2px 2px 3px rgba(0,0,0,0.2);
 
   background: #14c72f;
   background: -webkit-linear-gradient(#16e513, #14c72f, #14c72f);
@@ -279,6 +275,7 @@
   background: -ms-linear-gradient(#14c72f, #14c72f);
   background: -o-linear-gradient(#14c72f, #14c72f);
   background: linear-gradient(#14c72f, #14c72f);
+  
   -webkit-box-shadow: inset 0 1px 1px #2dd045, 0 2px 2px 3px rgba(0,0,0,0.2);
   -moz-box-shadown: inset 0 1px 1px #2dd045, 0 2px 2px 3px rgba(0,0,0,0.2);
   box-shadow: inset 0 1px 1px #2dd045, 0 2px 2px 3px rgba(0,0,0,0.2);
