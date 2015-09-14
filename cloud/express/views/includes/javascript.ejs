@@ -40,12 +40,12 @@ mixpanel.track('Web: <%= template %>', {
 	<script type="text/javascript" src="/js/home.js?r=<%= random %>"></script>
 <% } else if(template.split("/")[0] == "auth") { %>
 	<script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
+<% } else if(template == "dashboard/classes/new") { %>
+  <script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
 <% } else if(template.split("/")[0] == "dashboard") { %>
 	<% if(mode != "view") { %>
 		<script type="text/javascript" src="/js/dashboard.js?r=<%= random %>"></script>
 	<% } %>
-<% } else if(template == "dashboard/classes/new") { %>
-  <script type="text/javascript" src="/js/modal.js?r=<%= random %>"></script>
 <% } else if(template == "student/index") { %>
   <script type="text/javascript" src="/js/student.js?r=<%= random %>"></script>
 <% } %>

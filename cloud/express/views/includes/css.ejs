@@ -10,12 +10,12 @@
 	<link rel="stylesheet" href="/css/notfound.css?r=<%= random %>">
 <% } else if(template.split("/")[0] == "auth") { %>
   <link rel="stylesheet" href="/css/modal.css?r=<%= random %>">
+<% } else if(template == "dashboard/classes/new") { %>
+  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>"> 
 <% } else if(template.split("/")[0] == "dashboard") { %>
   <link rel="stylesheet" href="/css/dashboard.css?r=<%= random %>">
   <link rel="stylesheet" href="/css/dashboard.viewer.css?r=<%= random %>">
   <link rel="stylesheet" href="/css/dashboard.table.css?r=<%= random %>">
-<% } else if(template == "dashboard/classes/new") { %>
-  <link rel="stylesheet" href="/css/modal.css?r=<%= random %>">
 <% } else if(template == "student/index") { %>
 	<link rel="stylesheet" href="/css/student.css?r=<%= random %>">
 <% } %>
