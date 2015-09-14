@@ -1,5 +1,5 @@
 html, body {
-	background: #01233F;
+	background: #FAFFFF;
 }
 
 body {
@@ -18,16 +18,16 @@ body {
 .container .header {
   text-align: center;
   font-family: 'Courgette', cursive;
-  color: #fff;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  color: rgba(18%, 34%, 45%, 1);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   font-size: 36px;
   font-weight: 900;
 }
 
 .container .subheader {
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  color: rgba(18%, 34%, 45%, 0.8);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   font-size: 18px;
   font-weight: bold;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 .container .form .question {
-	color: #fff;
+	color: rgba(18%, 34%, 45%, 1);
 	font-size: 24px;
 	float: left;
 	
