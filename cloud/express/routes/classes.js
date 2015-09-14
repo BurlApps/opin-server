@@ -18,12 +18,6 @@ module.exports.hasClasses = function(req, res, next) {
 module.exports.hasClass = function(req, res, next) {
 	module.exports.hasClasses(req, res, function() {	
 		var classroom = new Class()
-		var access = (req.user.classes.filter(function(a) {
-			return a.id == req.param("class")
-		}).length > 0)
-		
-		if(!access)
-			return res.redirect("/classes")
 			
 		classroom.id  = req.param("class")
 		
