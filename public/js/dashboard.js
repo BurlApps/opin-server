@@ -82,12 +82,14 @@ $(function() {
       })
 	  
 	  var form = $(this)
-	  button = form.find(".new-button")
+	  var button = form.find(".new-button")
+	  var mode = config.mode.slice(0, -1).toUpperCase()
 	  var data = {
 		  _csrf: config.csrf,
 		  name: form.find(".survey-name").val(),
 			questions: form.find("tbody tr:not(.empty):not(:hidden)").map(function() {				
 			  return {
+				  id: $(this).data("question"),
 				  tag: $(this).find(".tag").val(),
 				  question: $(this).find(".question").val()
 			  }
@@ -102,14 +104,14 @@ $(function() {
         confirmButtonColor: "#D23939"
       })
 	  
-	  button.val("CREATING...")
+	  button.val(mode + "ING...")
 	  
 	  $.post(form.attr("action"), data, function(response) {
 		  if(response.success) {
-			  button.val("CREATED")
+			  button.val(mode + "ED")
 			  
 			  swal({
-		      title: "Your Survey Has<br>Been Created!",
+		      title: "Your Survey Has<br>Been " + config.mode + "d!",
 		      html: true,
 		      type: "success",
 		      confirmButtonColor: "#38A0DC",
@@ -119,7 +121,7 @@ $(function() {
 	        }, 500)
 	      })
 	    } else {
-		    button.val("CREATE")
+		    button.val(mode + "E")
 		    
 		    swal({
 	        title: "Oops...",

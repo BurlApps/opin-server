@@ -10,6 +10,7 @@ module.exports.hasClasses = function(req, res, next) {
     	return res.redirect('/classes/new')
     
     req.user.classes = classes
+    res.locals.classes = classes
     next()
   })
 }
@@ -58,7 +59,7 @@ module.exports.home = function(req, res) {
 		return req.classroom.relation("students").query().count()
 	}).then(function(students) {
 		res.renderT('dashboard/classes/index', {
-	    classes: req.user.classes,
+	  	mode: "surveys",
 	    surveys: surveys,
 	    students: students
 		})

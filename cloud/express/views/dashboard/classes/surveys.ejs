@@ -25,8 +25,8 @@
 	    </thead>
 	    <tbody>
 		    <% surveys.forEach(function(survey) { %>		    
-			    <tr data-href="/classes/<%= classroom.id %>/<%= survey.id %>">
-		        <td><div class="fa fa-bar-chart-o"></div></td>
+			    <tr data-href="/classes/<%= classroom.id %>/<%= survey.id %><%= survey.get("state") == 0 ? "/edit" : "" %>">
+		        <td><div class="fa fa-<%= survey.get("state") == 0 ? "pencil" : "bar-chart-o" %>"></div></td>
 		        <td><%= survey.get("name") %></td>
 		        <% if(survey.get("state") == 0) { %>
 			        <td>
@@ -36,7 +36,7 @@
 				      	<a class="send" href="/classes/<%= classroom.id %>/<%= survey.id %>/send">Send To Students</a>  
 				      </td>
 		        <% } else if(survey.get("state") == 1) { %>
-		        	<td class="blue">IN PROGRESS (<%= survey.get("taken") + "/" + survey.get("sent") %>)</td>
+		        	<td class="blue">SURVEYING (<%= survey.get("taken") + "/" + survey.get("sent") %>)</td>
 		        <% } else { %>
 			        <td	class="green">FINISHED</td>
 			      <% } %>

@@ -32,37 +32,37 @@ module.exports.hasInstallation = function(req, res, next) {
 }
 
 module.exports.new = function(req, res) {
-  res.renderT('dashboard/surveys/new', {
-	  classes: req.user.classes
+  res.renderT('dashboard/surveys/index', {
+	  mode: "create",
+	  config: {
+			mode: "Create"
+	  }
   })
 }
 
 module.exports.newPOST = function(req, res) {
 	var survey = new Survey()
 	var questions = req.param("questions")
+	var relation = survey.relation("questions")
+	var promise = Parse.Promise.as()
 	
 	survey.set("name", req.param("name"))
 	survey.set("class", req.classroom)
-	
-	survey.save().then(function() {
-		var relation = survey.relation("questions")
-		var promise = Parse.Promise.as()
 		
-		questions.forEach(function(data) {
-	    promise = promise.then(function() {
-	      var question = new Question()
-	      
-	      question.set("tag", data.tag)
-	      question.set("question", data.question)
-	      
-	      return question.save().then(function() {
-		    	return relation.add(question)
-	      })
-	    })
-	  })
+	questions.forEach(function(data) {
+    promise = promise.then(function() {
+      var question = new Question()
+      
+      question.set("tag", data.tag)
+      question.set("question", data.question)
+      
+      return question.save().then(function() {
+	    	return relation.add(question)
+      })
+    })
+  })
 	  
-	  return promise
-	}).then(function() {
+	promise.then(function() {
 		return survey.save()
 	}).then(function() {
 		res.successT({
@@ -100,6 +100,69 @@ module.exports.send = function(req, res) {
 	}).then(function() {
 		res.redirect("/classes/" + req.classroom.id)
 	})
+}
+
+module.exports.view = function(req, res) {
+  if(req.survey.get("state") == 0)
+		return res.redirect("/classes/" + req.classroom.id + "/" + req.survey.id + "/edit")
+	
+	
+	var query = req.survey.relation("questions").query()
+	
+	query.find().then(function(questions) {
+		res.renderT("dashboard/surveys/index", {
+			mode: "view",
+			questions: questions
+		})
+	})
+}
+
+module.exports.edit = function(req, res) {
+  if(req.survey.get("state") > 0)
+		return res.redirect("/classes/" + req.classroom.id + "/" + req.survey.id)
+	
+	
+	var query = req.survey.relation("questions").query()
+	
+	query.find().then(function(questions) {
+		res.renderT("dashboard/surveys/index", {
+			mode: "edit",
+			questions: questions,
+			config: {
+				mode: "Save"
+		  }
+		})
+	})
+}
+
+module.exports.editPOST = function(req, res) {
+	var questions = req.param("questions")
+	var relation = req.survey.relation("questions")
+	var promise = Parse.Promise.as()
+	
+	req.survey.set("name", req.param("name"))
+		
+	questions.forEach(function(data) {
+    promise = promise.then(function() {
+      var question = new Question()
+      
+      question.id = data.id
+      question.set("tag", data.tag)
+      question.set("question", data.question)
+      
+      return question.save().then(function() {
+	    	return relation.add(question)
+      })
+    })
+  })
+	  
+	promise.then(function() {
+		return req.survey.save()
+	}).then(function() {
+		res.successT({
+			next: "/classes/" + req.classroom.id
+		})
+	}, res.errorT)
 }
 
 module.exports.student = function(req, res) {

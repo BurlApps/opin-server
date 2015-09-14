@@ -2,8 +2,8 @@
 	<div class="content">
 	  <div class="header">	
 		  <a class="back-button fa fa-chevron-left" href="/classes/<%= classroom.id %>"></a>    
-		  <input type="text" class="survey-name" name="name" placeholder="Give Your Survey A Name" step="1" autofocus required>
-	    <input type="submit" class="new-button" value="CREATE"/>
+		  <input type="text" class="survey-name" name="name" placeholder="Give Your Survey A Name" step="1" value="<%= survey.get("name") %>" required>
+	    <input type="submit" class="new-button" value="SAVE"/>
 	    <div class="clear"></div>
 	  </div>
 	  <table class="builder-table">
@@ -16,15 +16,17 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-		    <tr class="empty">
-		      <td><div class="fa fa-pencil"></div></td>
-	        <td>
-		        <input type="text" class="tag input" placeholder="understanding" maxlength="30">
-		        <div class="counter"></div>
-		       </td>
-	        <td><textarea class="question input" placeholder="Did you understand todays content?"></textarea></td>
-	        <td class="remove"><div class="fa fa-times"></div></td>
-	      </tr>
+		  	<% questions.forEach(function(question) { %>		    
+					<tr data-question="<%= question.id %>">
+						<td><div class="fa fa-pencil"></div></td>
+						<td>
+						  <input type="text" class="tag input" placeholder="understanding" maxlength="30" value="<%= question.get("tag") %>">
+						  <div class="counter">length: <%= question.get("tag").length %>/30</div>
+						 </td>
+						<td><textarea class="question input" placeholder="Did you understand todays content?"><%= question.get("question") %></textarea></td>
+						<td class="remove"><div class="fa fa-times"></div></td>
+					</tr>
+			  <% }) %>
 	      <tr class="hidden">
 		      <td><div class="fa fa-pencil"></div></td>
 	        <td>

@@ -111,10 +111,13 @@ app.get('/classes', routes.auth.restricted, routes.classes.hasClasses, routes.cl
 app.get('/classes/new', routes.auth.restricted, routes.classes.new)
 app.get('/classes/:class', routes.auth.restricted, routes.classes.hasClass, routes.classes.home)
 app.get('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, routes.surveys.new)
+app.get('/classes/:class/:survey', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.view)
+app.get('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.edit)
 app.get('/classes/:class/:survey/send', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.send)
 
 app.post('/classes/new', routes.auth.restricted, routes.classes.newPOST)
 app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, routes.surveys.newPOST)
+app.post('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.editPOST)
 
 // WebView Survey
 app.get('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.student)

@@ -2,7 +2,13 @@
 <div class="container">
   <% include ../header.ejs %>
   <div class="modal">
-	  <% include ./builder.ejs %>
+	  <% if(mode == "create") { %>
+	  	<% include ./builder.ejs %>
+	  <% } else if(mode == "edit") { %>
+	  	<% include ./editor.ejs %>
+	  <% } else { %>
+	  	<% include ./viewer.ejs %>
+	  <% }  %>
     <div class="shadow-top"></div>
     <div class="shadow-bottom"></div>
   </div>
