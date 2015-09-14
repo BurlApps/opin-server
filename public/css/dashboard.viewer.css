@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+.subheader .block:first-child {
+	border-left: none;
+}
+
 .subheader .block .value {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   font-weight: bold;
@@ -44,6 +48,7 @@
 .graph {
 	width: 100%;
 	position: relative;
+	background: rgba(0, 0, 0, 0.01);
 }
 
 .graph .line {
