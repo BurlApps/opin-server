@@ -47,13 +47,12 @@ module.exports.home = function(req, res) {
 	var surveys = []
 	
 	query.equalTo("class", req.classroom)
+	query.descending("createdAt")
 	
 	query.find().then(function(temps) {				
 		return surveys = temps.map(function(survey) {
 	    survey.duration = Moment.duration(survey.createdAt - now).humanize(true)
 	    return survey
-    }).sort(function(a, b) {
-      return b.createdAt - a.createdAt
     })
 	}).then(function() {
 		return req.classroom.relation("students").query().count()
