@@ -30,16 +30,14 @@
 			  var bad = ((question.get("bad")/max) * 100) || 0
 			  var good = ((question.get("good")/max) * 100) || 0
 		  %>
-				<% if(!(good == bad && good == 0)) { %>
-			  	<div class="set">	    
-						<div class="slider" style='margin-left: <%= good/2 %>%;'>
-							<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
-						  <div class="item bad" style='width: <%= bad %>%;'></div>
-							<div class="item good" style='width: <%= good %>%;'></div>
-							<div class="clear"></div>
-					  </div>
-			  	</div>
-			  <% } %>
+		  	<div class="set">	    
+					<div class="slider" style='margin-left: <%= good/2 %>%;'>
+						<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
+					  <div class="item bad" style='width: <%= bad %>%;'></div>
+						<div class="item good" style='width: <%= good %>%; left: <%= bad %>%'></div>
+						<div class="clear"></div>
+				  </div>
+		  	</div>
 		  <% }) %>
 	  </div>
   </div>

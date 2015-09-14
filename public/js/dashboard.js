@@ -25,7 +25,7 @@ $(function() {
 	  var tr = $(this).parents("tr")
 	  var full = (tr.find(".input").map(function() {
 			if($(this).val().length > 0) return true
-	  }).get().length === 2)
+	  }).get().length > 0)
 	  
 	  if(full) {
 	  	tr.removeClass("empty")

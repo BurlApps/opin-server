@@ -53,7 +53,7 @@
 	top: 0;
 	left: 50%;
 	margin-left: -0.5px;
-	padding: 50px 0;
+	padding: 25px 0;
 	background: #BFCFDA;
 }
 
@@ -72,6 +72,7 @@
 
 .graph .line .set .tag {
 	position: absolute;
+	z-index: 1;
 	width: 100%;
 	text-align: center;
 	color: #fff;
@@ -82,15 +83,15 @@
 }
 
 .graph .line .set .item {
+	position: absolute;
+	z-index: 0;
 	background: rgba(0, 0, 0, 0.05);
 	height: 30px;
-	display: inline-block;
 }
 
 .graph .line .set .item.good {
 	border-left: solid 1px #BFCFDA;
 	background: #12B829;
-	float: right;
 	
 	-webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -105,7 +106,6 @@
 
 .graph .line .set .item.bad {
 	background: #BF5A66;
-	float: left;
 	
 	-webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
