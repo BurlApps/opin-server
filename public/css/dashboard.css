@@ -360,6 +360,7 @@ body > .container {
   font-family: 'Titillium Web', sans-serif;
   text-align: left;
   cursor: pointer;
+  display: inline-block;
 }
 
 .content .new-question:hover {

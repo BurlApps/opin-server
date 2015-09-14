@@ -23,15 +23,15 @@ $(function() {
   
   $(".builder-table").on("keypress keyup", "tr.empty .input", function() {
 	  var tr = $(this).parents("tr")
-	  var full = (tr.find(".input").map(function() {
-			if($(this).val().length > 0) return true
-	  }).get().length > 0)
 	  
-	  if(full) {
-	  	tr.removeClass("empty")
+	  if($(this).val().length > 0) {
+	  	tr.removeClass("empty").find(".input").prop("required", true)
 	  	
 	  	$(".builder-table tbody tr.hidden").before(
-	  		$("tr.hidden").clone().removeClass("hidden").addClass("empty").show()
+	  		$("tr.hidden").clone()
+	  			.removeClass("hidden")
+	  			.addClass("empty")
+	  			.show()
 	  	)
 	  }
   })
