@@ -51,7 +51,13 @@ $(function() {
   })
   
   $(".new-question").click(function() {
-	  $(".builder-table tbody tr.hidden").before(
+	  var hidden = $(".builder-table tbody tr.hidden")
+	  var empty = $(".builder-table tbody tr.empty")
+	  var insertBefore = hidden
+	  
+	  if(empty.index() > 0) insertBefore = empty
+	  
+	  insertBefore.before(
   		$("tr.hidden").clone().removeClass("hidden").show()
   	)
   })
