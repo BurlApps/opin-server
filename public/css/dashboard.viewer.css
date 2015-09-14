@@ -88,8 +88,13 @@
 }
 
 .graph .line .set .item.good {
+	border-left: solid 1px #BFCFDA;
 	background: #12B829;
 	float: right;
+	
+	-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 	
 	-webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;

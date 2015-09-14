@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="header">	
 	  <a class="back-button fa fa-chevron-left" href="/classes/<%= classroom.id %>"></a>    
-	  <input type="text" class="survey-name" value="<%= survey.get("name") %>">
+	  <div class="survey-name"><%= survey.get("name") %></div>
     <div class="clear"></div>
   </div>
   <div class="subheader">
@@ -25,19 +25,21 @@
   </div>
   <div class="graph">
 	  <div class="line">
-		  <% questions.forEach(function(question) {
+		  <% questions.forEach(function(question, index) {
 			  var max = question.get("bad") + question.get("good")
-			  var bad = (question.get("bad")/max) * 100
-			  var good = (question.get("good")/max) * 100
+			  var bad = ((question.get("bad")/max) * 100) || 0
+			  var good = ((question.get("good")/max) * 100) || 0
 		  %>
-		  	<div class="set">	    
-					<div class="slider" style='margin-left: <%= good/2 %>%;'>
-						<div class="tag"><%= question.get("tag") %></div>
-					  <div class="item bad" style='width: <%= bad %>%;'></div>
-						<div class="item good" style='width: <%= good %>%;'></div>
-						<div class="clear"></div>
-				  </div>
-		  	</div>
+				<% if(!(good == bad && good == 0)) { %>
+			  	<div class="set">	    
+						<div class="slider" style='margin-left: <%= good/2 %>%;'>
+							<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
+						  <div class="item bad" style='width: <%= bad %>%;'></div>
+							<div class="item good" style='width: <%= good %>%;'></div>
+							<div class="clear"></div>
+					  </div>
+			  	</div>
+			  <% } %>
 		  <% }) %>
 	  </div>
   </div>
