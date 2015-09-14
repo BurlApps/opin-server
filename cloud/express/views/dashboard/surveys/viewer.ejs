@@ -23,26 +23,39 @@
 	  </div>
 	  <div class="clear"></div>
   </div>
-  <div class="graph">
-	  <div class="line">
-		  <% questions.forEach(function(question, index) {
-			  var max = question.get("bad") + question.get("good")
-			  var bad = ((question.get("bad")/max) * 100) || 0
-			  var good = ((question.get("good")/max) * 100) || 0
-		  %>
-		  	<% if(max > 0) { %>
-			  	<div class="set">	    
-						<div class="slider" style='margin-left: <%= good/2 %>%;'>
-							<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
-						  <div class="item bad" style='width: <%= bad %>%;'></div>
-							<div class="item good" style='width: <%= good %>%; left: <%= bad %>%'></div>
-							<div class="clear"></div>
-					  </div>
-			  	</div>
-			  <% } %>
-		  <% }) %>
+  <% if(survey.get("taken") > 0) { %> 
+	  <div class="graph">
+		  <div class="line">
+			  <% questions.forEach(function(question, index) {
+				  var max = question.get("bad") + question.get("good")
+				  var bad = ((question.get("bad")/max) * 100) || 0
+				  var good = ((question.get("good")/max) * 100) || 0
+			  %>
+			  	<% if(max > 0) { %>
+				  	<div class="set">	    
+							<div class="slider" style='margin-left: <%= good/2 %>%;'>
+								<div class="tag"><%= question.get("tag") %> (<%= index + 1 %>)</div>
+							  <div class="item bad" style='width: <%= bad %>%;'></div>
+								<div class="item good" style='width: <%= good %>%; left: <%= bad %>%'></div>
+								<div class="clear"></div>
+						  </div>
+				  	</div>
+				  <% } %>
+			  <% }) %>
+		  </div>
 	  </div>
-  </div>
+  <% } else { %>
+		<div class="screen-message small">
+      <div class="message">
+        No Data Available Yet
+      </div>
+      <div class="submessage">
+	      Please give your students a couple<br>
+	      minutes to complete your survey.
+      </div>
+      <a class="new-button" href="<%= path %>">Reload page</a>
+    </div>
+	<% } %>
   <table class="viewer-table">
     <thead>
       <tr>
