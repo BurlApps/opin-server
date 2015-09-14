@@ -17,11 +17,9 @@
 	    <div class="clear"></div>
 	    <div class="dropdown">
 		    <div class="container">
-			    <% if(classes.length > 1) { %>
-			      <% classes.forEach(function(temp) { %>
-				      <a href="/classes/<%= temp.id %>"><%= temp.get("name") %></a>
-				    <% }) %>
-				  <% } %>
+		      <% classes.forEach(function(temp) { %>
+			      <a href="/classes/<%= temp.id %>"><%= temp.get("name") %></a>
+			    <% }) %>
 		    </div>
 	    </div>
 	  </div>
