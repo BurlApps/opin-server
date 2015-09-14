@@ -38,7 +38,7 @@
 		        <% } else if(survey.get("state") == 1) { %>
 		        	<td class="blue">SURVEYING (<%= survey.get("taken") + "/" + survey.get("sent") %>)</td>
 		        <% } else { %>
-			        <td	class="green">FINISHED</td>
+			        <td	class="green">COMPLETED</td>
 			      <% } %>
 		        <td><%= survey.duration %></td>
 		      </tr>
