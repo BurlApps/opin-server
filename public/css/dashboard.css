@@ -145,13 +145,7 @@ body > .container {
 .container .header .profile .dropdown .container a:hover {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.05);
-
-  background: #3fa9e5;
-  background-image: -webkit-linear-gradient(#3fa9e5,#0f8fdc);
-  background-image: -moz-linear-gradient(#3fa9e5,#0f8fdc);
-  background-image: -ms-linear-gradient(#3fa9e5,#0f8fdc);
-  background-image: -o-linear-gradient(#3fa9e5,#0f8fdc);
-  background-image: linear-gradient(#3fa9e5,#0f8fdc);
+  background: #1996E1;
 }
 
 /* Container Modal */
