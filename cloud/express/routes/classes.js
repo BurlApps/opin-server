@@ -40,6 +40,7 @@ module.exports.home = function(req, res) {
 	var query = new Parse.Query(Survey)
 	var surveys = []
 	
+	query.notEqualTo("show", false)
 	query.equalTo("class", req.classroom)
 	query.descending("createdAt")
 	

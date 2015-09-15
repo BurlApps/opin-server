@@ -150,22 +150,26 @@ module.exports.editPOST = function(req, res) {
 	var promise = Parse.Promise.as()
 	
 	req.survey.set("name", req.param("name"))
-		
-	questions.forEach(function(data) {
-    promise = promise.then(function() {
-      var question = new Question()
-      
-      question.id = data.id
-      question.set("tag", data.tag)
-      question.set("question", data.question)
-      
-      return question.save().then(function() {
-	    	return relation.add(question)
-      })
-    })
-  })
+	
+	relation.query().each(function(question) {
+		relation.remove(question)
+	}).then(function() {
+		questions.forEach(function(data) {
+	    promise = promise.then(function() {
+	      var question = new Question()
+	      
+	      question.id = data.id
+	      question.set("tag", data.tag)
+	      question.set("question", data.question)
+	      
+	      return question.save().then(function() {
+		    	return relation.add(question)
+	      })
+	    })
+	  })
 	  
-	promise.then(function() {
+	  return promise
+	}).then(function() {
 		return req.survey.save()
 	}).then(function() {
 		res.successT({
@@ -231,3 +235,36 @@ module.exports.studentPOST = function(req, res) {
 		})
   }, res.errorT)
 }
+
+module.exports.duplicate = function(req, res) {
+	var survey = new Survey()
+	var relation = survey.relation("questions")
+	var query = req.survey.relation("questions").query()
+	
+	survey.set("name", (req.survey.get("name") + " (copy)"))
+	survey.set("class", req.survey.get("class"))
+	
+	query.each(function(question) {
+		var temp = new Question()
+		
+		temp.set("tag", question.get("tag"))
+    temp.set("question", question.get("question"))
+		
+		return temp.save().then(function() {
+			relation.add(temp)
+		})
+	}).then(function() {
+		return survey.save()
+	}).then(function() {
+		return res.redirect("/classes/" + req.classroom.id)
+	})
+}
+
+module.exports.remove = function(req, res) {
+	req.survey.set("show", false)
+
+	req.survey.save().then(function() {
+		return res.redirect("/classes/" + req.classroom.id)
+	})
+}
+

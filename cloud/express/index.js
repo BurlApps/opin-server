@@ -114,6 +114,8 @@ app.get('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, 
 app.get('/classes/:class/:survey', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.view)
 app.get('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.edit)
 app.get('/classes/:class/:survey/send', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.send)
+app.get('/classes/:class/:survey/duplicate', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.duplicate)
+app.get('/classes/:class/:survey/remove', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.remove)
 
 app.post('/classes/new', routes.auth.restricted, routes.classes.newPOST)
 app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass, routes.surveys.newPOST)
