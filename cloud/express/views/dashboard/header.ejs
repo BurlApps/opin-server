@@ -1,5 +1,9 @@
 <div class="header">
   <a href="/classes/<%= classroom.id %>" class="logo"><%= siteName %></a>
+  <div class="banner">
+			Classroom Code: 
+			<span><%= classroom.get("code") %></span>
+	</div>
   <div>
 	  <div class="profile">
 	    <div class="user"><%= user.get("name") %></div>

@@ -2,7 +2,8 @@
 	<div class="content">
 	  <div class="header">	
 		  <a class="back-button fa fa-chevron-left" href="/classes/<%= classroom.id %>"></a>    
-		  <input type="text" class="survey-name" name="name" placeholder="Give Your Survey A Name" step="1" autofocus required>
+		  <input type="text" class="survey-name" name="name" 
+		  	placeholder="Give Your Survey A Name" step="1" value="Survey (<%= day %>)" required>
 	    <input type="submit" class="new-button" value="CREATE"/>
 	    <div class="clear"></div>
 	  </div>
@@ -19,7 +20,7 @@
 		    <tr class="empty">
 		      <td><div class="fa fa-pencil"></div></td>
 	        <td>
-		        <input type="text" class="tag input" placeholder="understanding" maxlength="30" required>
+		        <input type="text" class="tag input" placeholder="understanding" maxlength="30" value="Question 1" required>
 		        <div class="counter"></div>
 		       </td>
 	        <td><textarea class="question input" placeholder="Did you understand todays content?" required></textarea></td>

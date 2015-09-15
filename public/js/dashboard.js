@@ -23,14 +23,20 @@ $(function() {
   
   $(".builder-table").on("keypress keyup", "tr.empty .input", function() {
 	  var tr = $(this).parents("tr")
+	  var count = $(".builder-table tbody tr:not(.hidden)").size()
 	  
 	  if($(this).val().length > 0) {
-	  	tr.removeClass("empty").find(".input").prop("required", true)
+	  	tr.removeClass("empty")
+	  		.find(".input")
+	  		.prop("required", true)
 	  	
 	  	$(".builder-table tbody tr.hidden").before(
 	  		$("tr.hidden").clone()
-	  			.removeClass("hidden")
+		  		.removeClass("hidden")
 	  			.addClass("empty")
+	  			.find(".tag")
+	  			.val("Question " + (count + 1))
+	  			.parents("tr")
 	  			.show()
 	  	)
 	  }
@@ -53,12 +59,18 @@ $(function() {
   $(".new-question").click(function() {
 	  var hidden = $(".builder-table tbody tr.hidden")
 	  var empty = $(".builder-table tbody tr.empty")
+	  var count = $(".builder-table tbody tr:not(.hidden)").size()
 	  var insertBefore = hidden
 	  
 	  if(empty.index() > 0) insertBefore = empty
 	  
 	  insertBefore.before(
-  		$("tr.hidden").clone().removeClass("hidden").show()
+  		$("tr.hidden").clone()
+  			.removeClass("hidden")
+  			.find(".tag")
+  			.val("Question " + (count + 1))
+  			.parents("tr")
+  			.show()
   	)
   })
   

@@ -45,6 +45,6 @@ mixpanel.track('Web: <%= template %>', {
 <% } else if(template.split("/")[0] == "dashboard") { %>
 	<script type="text/javascript" src="/js/dashboard.js?r=<%= random %>"></script>
 <% } else if(template == "student/index") { %>
-	<script type="text/javascript" src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobile.min.js"></script>
   <script type="text/javascript" src="/js/student.js?r=<%= random %>"></script>
 <% } %>

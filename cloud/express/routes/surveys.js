@@ -32,8 +32,13 @@ module.exports.hasInstallation = function(req, res, next) {
 }
 
 module.exports.new = function(req, res) {
+	var date = new Date()
+	var month = date.getMonth() + 1
+	var day = date.getDate()
+	
   res.renderT('dashboard/surveys/index', {
 	  mode: "create",
+	  day: month + '/' +day,
 	  config: {
 			mode: "Create"
 	  }
@@ -101,7 +106,7 @@ module.exports.send = function(req, res) {
 		
 		return req.survey.save()
 	}).then(function() {
-		res.redirect("/classes/" + req.classroom.id)
+		res.redirect("/classes/" + req.classroom.id + "/" + req.survey.id)
 	})
 }
 

@@ -26,15 +26,15 @@
   <% if(survey.get("taken") > 0) { %> 
 	  <div class="graph">
 		  <div class="line">
-			  <% questions.forEach(function(question, index) {
+			  <% questions.forEach(function(question) {
 				  var max = question.get("bad") + question.get("good")
-				  var bad = ((question.get("bad")/max) * 100) || 0
-				  var good = ((question.get("good")/max) * 100) || 0
+				  var bad = Math.floor(((question.get("bad")/max) * 100) || 0)
+					var good = Math.ceil(100 - bad)
 			  %>
 			  	<% if(max > 0) { %>
 				  	<div class="set">	    
 							<div class="slider" style='margin-left: <%= good/2 %>%;'>
-								<div class="tag"><%= index + 1 %>) <%= question.get("tag") %></div>
+								<div class="tag"><%= question.get("tag") %></div>
 							  <div class="item bad" style='width: <%= bad %>%;'></div>
 								<div class="item good" style='width: <%= good %>%; left: <%= bad %>%'></div>
 								<div class="clear"></div>
@@ -70,7 +70,7 @@
 	  	<% questions.forEach(function(question, index) { 
 		  	var max = question.get("bad") + question.get("good")
 				var bad = Math.floor(((question.get("bad")/max) * 100) || 0)
-				var good = Math.ceil(100 - bad)
+				var good = Math.ceil(((question.get("good")/max) * 100) || 0)
 	  	%>		    
 				<tr data-question="<%= question.id %>">
 					<td><%= index + 1 %>)</td>

@@ -18,13 +18,14 @@ body {
   box-sizing: border-box;
 }
 
-.background {
+body > .background {
 	display: none;
 }
 
-.container {
+body > .container {
 	margin: 0 auto;
 	max-width: 400px;
+	padding: 0;
 }
 
 .container .header {

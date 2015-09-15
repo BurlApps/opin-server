@@ -1,4 +1,4 @@
-$(function() {
+$(function() {	
 	$(".selector").on("click tap", function(e) {		
 		var button = $(this)
 		var parent = button.parent()
