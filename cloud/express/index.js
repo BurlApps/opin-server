@@ -122,8 +122,11 @@ app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass,
 app.post('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.editPOST)
 
 // WebView Survey
+app.get('/surveys', routes.surveys.join)
+app.get('/surveys/:survey', routes.surveys.hasSurveyCode, routes.surveys.student)
 app.get('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.student)
 
+app.post('/surveys/:survey', routes.surveys.hasSurveyCode, routes.surveys.studentPOST)
 app.post('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.studentPOST)
 
 // Terms & Privacy

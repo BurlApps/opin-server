@@ -4,6 +4,20 @@
 	  <div class="survey-name"><%= survey.get("name") %></div>
     <div class="clear"></div>
   </div>
+  <% if(survey.get("state") == 1) { %>
+  	<div class="class-link">
+	  	CODE:
+	  	<a href="/surveys/<%= survey.get("code") %>" target="_blank">
+		  	<%= survey.get("code").toUpperCase() %>
+	  	</a>
+	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·
+	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  	URL:
+	  	<a href="/surveys/<%= survey.get("code") %>" target="_blank">
+	  		<%= host %>/surveys/<%= survey.get("code") %>
+	  	</a>
+	  </div>
+  <% } %>
   <div class="subheader">
 	  <div class="block">
 		  <div class="value"><%= survey.get("taken") %></div>

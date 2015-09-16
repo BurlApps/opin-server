@@ -1,3 +1,23 @@
+.class-link {
+	width: 100%;
+	padding: 15px 0;
+	background: #F0F5F8;
+	display: block;
+	border-bottom: solid 1px #BFCFDA;
+  font-family: 'Titillium Web', sans-serif;
+  text-align: center;
+}
+
+.class-link a {
+	display: inline-block;
+	margin-left: 5px;
+	color: #0695C3;
+}
+
+.class-link a:hover {
+	text-decoration: underline;
+}
+
 /* Container Sub Header */
 .subheader {
 	background: #F7F8FA;

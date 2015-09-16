@@ -17,6 +17,22 @@ module.exports.hasSurvey = function(req, res, next) {
 	})
 }
 
+module.exports.hasSurveyCode = function(req, res, next) {
+	var query = new Parse.Query(Survey)
+		
+	query.equalTo("code", req.param("survey").toLowerCase())
+	
+	query.first(function(survey) {	
+		if(!survey) return res.redirect("/surveys")
+			
+  	req.survey = survey
+  	res.locals.survey = survey
+    next()
+	}, function() {
+    res.redirect("/surveys")
+	})
+}
+
 module.exports.hasInstallation = function(req, res, next) {
 	var installation = new Installation()
 		
@@ -178,9 +194,15 @@ module.exports.editPOST = function(req, res) {
 	}, res.errorT)
 }
 
+module.exports.join = function(req, res) {
+	res.renderT("student/join")
+} 
+
 module.exports.student = function(req, res) {
+	var doneURL = (req.installation) ? "callback://done" : "/surveys"
+	
 	if(req.survey.get("state") == 2)
-		return res.redirect("callback://done")
+		return res.redirect(doneURL)
 	
 	req.survey.get("class").fetch().then(function(classroom) {
 		res.locals.classroom = classroom
@@ -195,14 +217,15 @@ module.exports.student = function(req, res) {
 } 
 
 module.exports.studentPOST = function(req, res) {
-	if(req.survey.get("state") == 2)
-		return res.successT({
-			next: "callback://done"
-		})
-	
-	var relation = req.installation.relation("surveys")
+	var doneURL = (req.installation) ? "callback://done" : "/surveys"
 	var answers = req.param("answers")
 	var promise = Parse.Promise.as()
+	
+	
+	if(req.survey.get("state") == 2)
+		return res.successT({
+			next: doneURL
+		})
 		
 	answers.forEach(function(data) {
     promise = promise.then(function() {
@@ -227,11 +250,14 @@ module.exports.studentPOST = function(req, res) {
 	  req.survey.increment("taken")
 	  req.survey.save()
   }).then(function() {
+	  if(!req.installation) return true;
+	  
+	  var relation = req.installation.relation("surveys")
 	  relation.remove(req.survey)
 	  return req.installation.save()
   }).then(function() {
 	  res.successT({
-			next: "callback://done"
+			next: doneURL
 		})
   }, res.errorT)
 }

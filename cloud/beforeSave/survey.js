@@ -12,6 +12,7 @@ Parse.Cloud.beforeSave("Survey", function(req, res) {
   object.set("sent", 0)
 	object.set("taken", 0)
 	object.set("state", 0)
+	object.set("show", true)
 
   return res.success()
 })
