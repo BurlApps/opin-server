@@ -1,5 +1,7 @@
-$(function() {	
-	$(".selector").on("click tap", function(e) {		
+$(function() {		
+	var now = new Date()
+	
+	$(".selector").on("click", function(e) {		
 		var button = $(this)
 		var parent = button.parent()
 		var selectors = parent.find(".selector")
@@ -10,12 +12,15 @@ $(function() {
 		
 		if($(".selector.selected").length == $(".item").length)
 			$(".form .button").removeAttr("disabled")
+			
+		if(config.bTester) nextQuestion()
 	})
 	
 	$(".form").submit(function(e) {
 		e.preventDefault()
 		e.stopPropagation()
 		
+		var dif = (new Date()).getTime() - now.getTime()
 		var form = $(this)
 		var button = form.find(".button")
 		var data = {
@@ -36,7 +41,15 @@ $(function() {
 		  if(response.success) {
 			  button.text("SENT")
 			  
-			  setTimeout(function() {
+			  if(mixpanel.time_event)
+				  mixpanel.track("Survey Taken", {
+					  Tester: config.bTester ? "B" : "A",
+					  Survey: config.survey,
+					  Questions: config.questionLength,
+					  Time: Math.abs(dif / 1000)
+					})
+			  
+			  setTimeout(function() {				  
           location.href = response.next
         }, 500)
 	    } else {
@@ -44,4 +57,32 @@ $(function() {
 	    }
 	  })
 	})
+	
+	function nextQuestion() {
+		var element = $(".item.active")
+		var next = element.data("next")
+		
+		if(next == "stop") {
+			element
+			.find(".question")
+			.text("SENDING...")
+			.next(".selectors")
+			.hide()
+			
+			$(".bottom").hide()
+			$(".form").submit()
+		} else {
+			element
+			.removeClass("active")
+			.hide()
+			
+			$(".bottom span").text(parseInt(next) + 1)
+			
+			$(".item." + next)
+				.addClass("active")
+				.removeClass("hidden")
+		}
+			
+		
+	}
 })

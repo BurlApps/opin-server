@@ -4,6 +4,11 @@ module.exports.home = function(req, res) {
   res.redirect("/classes")
 }
 
+module.exports.support = function(req, res, next) {
+	res.locals.support = true
+	next()
+}
+
 module.exports.notfound = function(req, res) {
   res.renderT('home/notfound')
 }

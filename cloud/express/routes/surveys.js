@@ -29,7 +29,9 @@ module.exports.hasSurveyCode = function(req, res, next) {
   	res.locals.survey = survey
     next()
 	}, function() {
-    res.redirect("/surveys")
+    res.renderT("student/message", {
+	    success: false
+    })
 	})
 }
 
@@ -43,7 +45,7 @@ module.exports.hasInstallation = function(req, res, next) {
   	res.locals.installation = installation
     next()
 	}, function(error) {
-    res.renderT("home/notfound")
+    res.redirect("callback://done")
 	})
 }
 
@@ -194,15 +196,22 @@ module.exports.editPOST = function(req, res) {
 	}, res.errorT)
 }
 
-module.exports.join = function(req, res) {
-	res.renderT("student/join")
+module.exports.studentSuccess = function(req, res) {
+	res.renderT("student/message", {
+    success: true
+  })
 } 
 
 module.exports.student = function(req, res) {
-	var doneURL = (req.installation) ? "callback://done" : "/surveys"
+	var doneURL = (req.installation) ? "callback://done" : "/surveys/success"
 	
-	if(req.survey.get("state") == 2)
-		return res.redirect(doneURL)
+	if(!req.session.surveys)
+		req.session.surveys = []
+		
+	if(req.session.surveys.indexOf(req.survey.id) > -1)
+		return res.renderT("student/message", {
+	    success: false
+    })
 	
 	req.survey.get("class").fetch().then(function(classroom) {
 		res.locals.classroom = classroom
@@ -211,22 +220,27 @@ module.exports.student = function(req, res) {
 		return query.find()
 	}).then(function(questions) {
 		res.renderT("student/index", {
-			questions: questions
+			questions: questions,
+			config: {
+				survey: req.survey.id,
+				questionLength: questions.length,
+				bTester: Math.random() < 0.5
+			}
 		})
 	})
 } 
 
 module.exports.studentPOST = function(req, res) {
-	var doneURL = (req.installation) ? "callback://done" : "/surveys"
+	var doneURL = (req.installation) ? "callback://done" : "/surveys/success"
 	var answers = req.param("answers")
 	var promise = Parse.Promise.as()
 	
-	
-	if(req.survey.get("state") == 2)
-		return res.successT({
-			next: doneURL
-		})
+	if(!req.session.surveys)
+		req.session.surveys = []
 		
+	if(req.session.surveys.indexOf(req.survey.id) > -1)
+		return res.errorT("Survey Has Expired :(")
+	
 	answers.forEach(function(data) {
     promise = promise.then(function() {
 	    var question = new Question()
@@ -255,7 +269,9 @@ module.exports.studentPOST = function(req, res) {
 	  var relation = req.installation.relation("surveys")
 	  relation.remove(req.survey)
 	  return req.installation.save()
-  }).then(function() {
+  }).then(function() {			
+		req.session.surveys.push(req.survey.id)
+		  
 	  res.successT({
 			next: doneURL
 		})

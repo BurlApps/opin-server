@@ -234,6 +234,16 @@
   line-height: 34px;
 }
 
+.screen-message .submessage a {
+	color: #8DE9FF;
+	font-weight: 600;
+	font-family: inherit;
+}
+
+.screen-message .submessage a:hover {
+	text-decoration: underline;
+}
+
 .screen-message .subsubmessage {
   font-size: 18px;
   font-family: 'Titillium Web', sans-serif;

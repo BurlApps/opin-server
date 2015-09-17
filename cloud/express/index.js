@@ -72,6 +72,7 @@ app.use(function(req, res, next) {
   res.locals.mixpanelToken = req.session.mixpanelToken
   res.locals.random = random
   res.locals.config = {}
+  res.locals.support = false
 
   if(!(req.session.appliedSettings !== true || !req.session.mixpanelToken)) 
   	return next()
@@ -90,6 +91,7 @@ app.use(function(req, res, next) {
 
 // Landing
 app.get('/', routes.auth.loggedIn, routes.auth.register)
+app.get('/support', routes.core.support, routes.auth.login)
 
 // Auth
 app.get('/login', routes.auth.loggedIn, routes.auth.login)
@@ -122,7 +124,7 @@ app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass,
 app.post('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.editPOST)
 
 // WebView Survey
-app.get('/surveys', routes.surveys.join)
+app.get('/surveys/success', routes.surveys.studentSuccess)
 app.get('/surveys/:survey', routes.surveys.hasSurveyCode, routes.surveys.student)
 app.get('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.student)
 
