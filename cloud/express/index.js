@@ -11,7 +11,8 @@ var routes = {
   core: require("cloud/express/routes/index"),
   auth: require("cloud/express/routes/auth"),
   classes: require("cloud/express/routes/classes"),
-  surveys: require("cloud/express/routes/surveys")
+  surveys: require("cloud/express/routes/surveys"),
+  students: require("cloud/express/routes/students")
 }
 
 // Global app configuration section
@@ -124,12 +125,13 @@ app.post('/classes/:class/new', routes.auth.restricted, routes.classes.hasClass,
 app.post('/classes/:class/:survey/edit', routes.auth.restricted, routes.classes.hasClass, routes.surveys.hasSurvey, routes.surveys.editPOST)
 
 // WebView Survey
-app.get('/surveys/success', routes.surveys.studentSuccess)
-app.get('/surveys/:survey', routes.surveys.hasSurveyCode, routes.surveys.student)
-app.get('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.student)
+app.get('/surveys/success', routes.student.success)
+app.get('/surveys/error', routes.student.error)
+app.get('/surveys/:survey', routes.student.hasSurvey, routes.student.survey)
+app.get('/surveys/:survey/:installation', routes.student.hasInstallation, routes.suveys.hasSurvey, routes.student.survey)
 
-app.post('/surveys/:survey', routes.surveys.hasSurveyCode, routes.surveys.studentPOST)
-app.post('/surveys/:survey/:installation', routes.surveys.hasInstallation, routes.surveys.hasSurvey, routes.surveys.studentPOST)
+app.post('/surveys/:survey', routes.student.hasSurvey, routes.student.surveyPOST)
+app.post('/surveys/:survey/:installation', routes.student.hasInstallation, routes.suveys.hasSurvey, routes.student.surveyPOST)
 
 // Terms & Privacy
 app.get('/terms', routes.core.terms)

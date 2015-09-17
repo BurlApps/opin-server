@@ -101,21 +101,15 @@
 }
 
 .content table.viewer-table td:nth-child(1) {
-  width: 4%;
-  color: #afbdde;
-  text-align: center;
-}
-
-.content table.viewer-table td:nth-child(2) {
   width: 26%;
 }
 
-.content table.viewer-table td:nth-child(3) {
-  width: 40%;
+.content table.viewer-table td:nth-child(2) {
+  width: 44%;
 }
 
-.content table.viewer-table td:nth-child(4),
-.content table.viewer-table td:nth-child(5) {
+.content table.viewer-table td:nth-child(3),
+.content table.viewer-table td:nth-child(4) {
   width: 15%;
 }
 
