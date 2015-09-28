@@ -1,5 +1,3 @@
-var Settings = require("cloud/utils/settings")
-
 module.exports.home = function(req, res) {
   res.renderT('home/notfound')
 }
@@ -13,13 +11,13 @@ module.exports.notfound = function(req, res) {
 }
 
 module.exports.terms = function(req, res) {
-  Settings().then(function(settings) {
+  Parse.Config.get().then(function(settings) {
   	res.redirect(settings.get("termsUrl"))
   })
 }
 
 module.exports.privacy = function(req, res) {
-  Settings().then(function(settings) {
+  Parse.Config.get().then(function(settings) {
   	res.redirect(settings.get("privacyUrl"))
   })
 }

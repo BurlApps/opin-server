@@ -1,4 +1,3 @@
-var Settings = require("cloud/utils/settings")
 var express = require('express')
 var app = express()
 var random = Math.random().toString(36).slice(2)
@@ -74,7 +73,7 @@ app.use(function(req, res, next) {
   if(!(req.session.appliedSettings !== true || !req.session.mixpanelToken)) 
   	return next()
   
-  Settings().then(function(settings) {
+  Parse.Config.get().then(function(settings) {
     req.session.appliedSettings = true
     req.session.host = settings.get("host")
     req.session.mixpanelToken = settings.get("mixpanelToken")
