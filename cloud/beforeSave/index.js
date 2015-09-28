@@ -1,2 +1,2 @@
-require("cloud/beforeSave/question")
-require("cloud/beforeSave/survey")
+require("cloud/beforeSave/batch")
+require("cloud/beforeSave/image")

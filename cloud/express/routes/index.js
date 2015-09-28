@@ -1,12 +1,11 @@
 var Settings = require("cloud/utils/settings")
 
 module.exports.home = function(req, res) {
-  res.redirect("/classes")
+  res.renderT('home/notfound')
 }
 
 module.exports.support = function(req, res, next) {
-	res.locals.support = true
-	next()
+	res.renderT('home/notfound')
 }
 
 module.exports.notfound = function(req, res) {
