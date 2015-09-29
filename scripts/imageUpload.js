@@ -3,6 +3,7 @@ var Parse = require("parse/node")
 var VoterImage = Parse.Object.extend("Image")
 var easyimg = require('easyimage')
 var path = process.argv[2]
+var gender = process.argv[3]
 var tmp = "/tmp/Placeholders" + Math.ceil(Math.random() * 500)
 
 Parse.initialize("q1NZZSGYNxaYIQq5dDNkMlD407fmm2Hq6BoXBzu4", "m736Jb7Z8atZGPSfW7eBnrOKwJNyDDSUFmTOVT5G")
@@ -37,6 +38,7 @@ fs.readdir(path, function(err, files) {
 					
 					image.set("active", true)
 					image.set("image", file)
+					image.set("gender", gender)
 					
 					return image.save()
 				}).then(function() {
