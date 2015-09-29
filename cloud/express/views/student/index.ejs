@@ -1,0 +1,29 @@
+<% include ../includes/start.ejs %>
+<div class="container <%= config.bTester ? "bTester": "" %>">
+	<div class="header"><%= survey.get("name") %></div>
+	<div class="subheader"><%= classroom.get("name") %></div>
+	<form class="form" action="<%= path %>">
+		<% questions.forEach(function(question, i) { %>
+			<div class="item <%= i %> <%= (config.bTester && i > 0)  ? "hidden" : "active" %>"
+					data-question="<%= question.id %>" data-next="<%= (i + 1 < questions.length)  ? (i + 1) : "stop" %>">
+				<div class="question"><%= question.get("question") %></div>
+				<div class="selectors">
+					<div class="selector down fa fa-thumbs-down" data-score="-1"></div>
+					<div class="selector up fa fa-thumbs-up" data-score="1"></div>
+					<input type="hidden" class="score"/>
+				</div>
+				<div class="clear"></div>
+			</div>
+		<% }) %>
+		<button type="submit" class="button <%= config.bTester ? "hidden" : "" %>" disabled>
+			SEND TO TEACHER
+			<span class="fa fa-arrow-right"></span>
+		</button>
+		<% if(config.bTester) { %>
+			<div class="bottom">
+				Question (<span>1</span>/<%= questions.length %>)
+			</div>
+		<% } %>
+	</form>
+</div>
+<% include ../includes/end.ejs %>

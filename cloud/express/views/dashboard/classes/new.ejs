@@ -1,0 +1,18 @@
+<% include ../../includes/start.ejs %>
+<div class="container">
+  <a href="/" class="logo"><%= siteName %></a>
+  <div class="modal">
+    <div class="message">Create Classroom</div>
+    <div class="submessage">
+      What class are you surveying?<br>
+      A class code will be created for you.
+    </div>
+    <form action="/classes/new">
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+      <input type="text" class="input" name="name" placeholder="Name (ex: Math Pd2)" step="1" autofocus required>
+      <input type="submit" class="button" value="Create Class!">
+    </form>
+  </div>
+</div>
+<% include ../../includes/footer.ejs %>
+<% include ../../includes/end.ejs %>
